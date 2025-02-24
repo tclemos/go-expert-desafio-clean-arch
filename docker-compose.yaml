@@ -1,0 +1,14 @@
+services:
+  grpc:
+    build:
+      context: .
+      target: grpc
+  
+  rest:
+    build:
+      context: .
+      target: rest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - grpc
