@@ -5,13 +5,20 @@ import (
 )
 
 type GRPCConfig struct {
-	Host string `mapstructure:"GRPC_HOST"`
-	Port int    `mapstructure:"GRPC_PORT"`
+	Host string `mapstructure:"HOST"`
+	Port int    `mapstructure:"PORT"`
 }
 
 type RESTConfig struct {
-	Host     string `mapstructure:"REST_HOST"`
-	Port     int    `mapstructure:"REST_PORT"`
+	Host     string `mapstructure:"HOST"`
+	Port     int    `mapstructure:"PORT"`
+	GRPCHost string `mapstructure:"GRPC_HOST"`
+	GRPCPort int    `mapstructure:"GRPC_PORT"`
+}
+
+type GraphQLConfig struct {
+	Host     string `mapstructure:"HOST"`
+	Port     int    `mapstructure:"PORT"`
 	GRPCHost string `mapstructure:"GRPC_HOST"`
 	GRPCPort int    `mapstructure:"GRPC_PORT"`
 }

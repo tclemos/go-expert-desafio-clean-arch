@@ -1,0 +1,65 @@
+mutation createOrder {
+    createOrder(request: {
+        customerName: "order 1",
+        items: ["item 1", "item 2", "item 3"],
+        amount: 100
+    }) {
+        id
+        customerName
+        items
+        amount
+        status
+    }
+}
+
+query listOrders {
+  listOrders {
+    id
+    customerName
+    items
+    amount
+    status
+  }
+}
+
+query listOrdersActive {
+  listOrders(request: { status: "active" }) {
+    id
+    customerName
+    items
+    amount
+    status
+  }
+}
+
+query getOrder {
+  getOrder(request: {id: "ae39645a-da7b-47af-80c0-0eb78f6722e2"}) {
+    id
+    customerName
+    items
+    amount
+    status
+  }
+}
+
+mutation updateOrder {
+    updateOrder(request: {
+        id: "ae39645a-da7b-47af-80c0-0eb78f6722e2",
+        customerName: "order 1 updated",
+        status: "complete",
+        items: ["item 2", "item 3", "item 4"],
+        amount: 200
+    }) {
+        id
+        customerName
+        items
+        amount
+        status
+    }
+}
+
+mutation deleteOrder {
+    deleteOrder(request: {id:"ae39645a-da7b-47af-80c0-0eb78f6722e2"}) {
+    	empty
+  	}
+}

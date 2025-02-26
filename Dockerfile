@@ -3,6 +3,7 @@ WORKDIR /app
 COPY . .
 RUN CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -o grpc ./cmd/grpc/
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o rest ./cmd/rest/
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o graphql ./cmd/graphql/
 
 FROM golang:1.23.5 as grpc
 WORKDIR /app
@@ -15,3 +16,9 @@ WORKDIR /app
 COPY --from=build /app/rest .
 COPY --from=build /app/cmd/rest/.env .
 ENTRYPOINT ["./rest"]
+
+FROM scratch as graphql
+WORKDIR /app
+COPY --from=build /app/graphql .
+COPY --from=build /app/cmd/graphql/.env .
+ENTRYPOINT ["./graphql"]

@@ -106,12 +106,6 @@ func (h *OrderHandlers) GetOrder(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if orderResponse.Order == nil {
-		render.Status(r, http.StatusNotFound)
-		render.Render(w, r, dto.ErrNotFound(fmt.Errorf("order not found")))
-		return
-	}
-
 	render.Status(r, http.StatusOK)
 	render.JSON(w, r, dto.OrderDTO{
 		ID:           orderResponse.Order.Id,

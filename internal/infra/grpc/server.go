@@ -11,6 +11,7 @@ import (
 	"github.com/tclemos/go-expert-desafio-clean-arch/internal/infra/grpc/services"
 	"github.com/tclemos/go-expert-desafio-clean-arch/internal/usecases/order_usecases"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func Start(grpcConfig config.GRPCConfig, dbConfig config.DBConfig) {
@@ -32,6 +33,9 @@ func Start(grpcConfig config.GRPCConfig, dbConfig config.DBConfig) {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
+
+	// enable reflection
+	reflection.Register(s)
 
 	// GRPC services
 	orderService := services.NewOrderService(createOrderUseCase, findOrderUseCase)

@@ -1,0 +1,52 @@
+type Empty {
+    empty: Boolean
+}
+
+type Order {
+    id: ID!
+    customerName: String!
+    status: String!
+    amount: Int!
+    items: [String!]!
+}
+
+input ListOrdersRequest {
+    customerName: String
+    status: String
+}
+
+input GetOrderRequest {
+    id: ID!
+}
+
+type Query {
+    listOrders(request: ListOrdersRequest): [Order!]!
+    getOrder(request: GetOrderRequest): Order
+}
+
+input CreateOrderRequest {
+    customerName: String!
+    items: [String!]!
+    amount: Int!
+}
+
+input UpdateOrderRequest {
+    id: ID!
+    customerName: String!
+    status: String!
+    amount: Int!
+    items: [String!]!
+}
+
+input DeleteOrderRequest {
+    id: ID!
+}
+
+type Mutation {
+    createOrder(request: CreateOrderRequest): Order!
+    updateOrder(request: UpdateOrderRequest): Order!
+    deleteOrder(request: DeleteOrderRequest): Empty!
+}
+
+
+

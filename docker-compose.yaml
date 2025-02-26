@@ -9,6 +9,15 @@ services:
       context: .
       target: rest
     ports:
+      - "3000:3000"
+    depends_on:
+      - grpc
+
+  graphql:
+    build:
+      context: .
+      target: graphql
+    ports:
       - "8080:8080"
     depends_on:
       - grpc
